@@ -759,17 +759,8 @@ out:
 	kfree(n);
 	kfree(t);
 
-// [ SEC_SELINUX_PORTING_COMMON
-#ifdef CONFIG_ALWAYS_ENFORCE
-#if (defined CONFIG_KDP_CRED && defined CONFIG_SAMSUNG_PRODUCT_SHIP)
-	enforcing_set(NULL, 1);
-#else
-	selinux_enforcing = 1;
-#endif
-#endif
 	if (!selinux_enforcing) // SEC_SELINUX_PORTING_COMMON Change to use RKP 
 		return 0;
-// ] SEC_SELINUX_PORTING_COMMON
 	return -EPERM;
 }
 
@@ -1613,17 +1604,8 @@ out:
 	kfree(t);
 	kfree(n);
 
-// [ SEC_SELINUX_PORTING_COMMON
-#ifdef CONFIG_ALWAYS_ENFORCE
-#if (defined CONFIG_KDP_CRED && defined CONFIG_SAMSUNG_PRODUCT_SHIP)
-	enforcing_set(NULL, 1);
-#else
-	selinux_enforcing = 1;
-#endif
-#endif
 	if (!selinux_enforcing) // SEC_SELINUX_PORTING_COMMON Change to use RKP 
 		return 0;
-// ] SEC_SELINUX_PORTING_COMMON
 	return -EACCES;
 }
 
@@ -1933,17 +1915,8 @@ static inline int convert_context_handle_invalid_context(
 	char *s;
 	u32 len;
 
-// [ SEC_SELINUX_PORTING_COMMON 
-#ifdef CONFIG_ALWAYS_ENFORCE
-#if (defined CONFIG_KDP_CRED && defined CONFIG_SAMSUNG_PRODUCT_SHIP)
-	enforcing_set(NULL, 1);
-#else
-	selinux_enforcing = 1;
-#endif
-#endif
 	if (!selinux_enforcing) // SEC_SELINUX_PORTING_COMMON Change to use RKP
 		return -EINVAL;
-// ] SEC_SELINUX_PORTING_COMMON
 
 	if (!context_struct_to_string(policydb, context, &s, &len)) {
 		pr_warn("SELinux:  Context %s would be invalid if enforcing\n",
